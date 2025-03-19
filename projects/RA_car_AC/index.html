@@ -81,7 +81,14 @@
           <p>This project explores the application of reinforcement learning (RL) for optimizing vehicle speed in autonomous navigation. Using a Unity-based simulator integrated with ROS, we developed a system that balances speed and safety while improving lap times.</p>
           
           <p>The research focuses on integrating Deep Q-Network (DQN) and CNN-based neural networks to dynamically optimize speed in real-time, enabling more efficient and adaptable autonomous navigation.</p>
-
+          <figure>
+            <picture>
+                <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+                <img src="/assets/img/dl.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto" 
+                     title="Simulation in Action" loading="eager" 
+                     onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+            </picture>
+        </figure>
           <h3>Prerequisites</h3>
           <p>Ensure you have the following dependencies installed before running this project:</p>
           <ul>
@@ -132,7 +139,7 @@
           <h3>Results and Evaluation</h3>
           <p>Our RL model achieved nearly competitive lap times compared to a manually optimized PID controller.</p>
           <ul>
-              <li><strong>Lap Completion Time:</strong> RL model - 36 mins vs. PID control - 32 mins.</li>
+              <li><strong>Lap Completion Time:</strong> RL model - 36 secs vs. PID control - 32 secs.</li>
               <li><strong>Performance:</strong> Adaptive braking and turn anticipation improved driving efficiency.</li>
           </ul>
 
@@ -158,7 +165,7 @@
           <figure>
               <picture>
                   <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
-                  <img src="/assets/img/architecture_diagram.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Project Architecture" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+                  <img src="/assets/img/dlarchitecture.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Project Architecture" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
               </picture>
           </figure>
 
@@ -166,9 +173,15 @@
           <figure>
               <picture>
                   <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
-                  <img src="/assets/img/simulator_run.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Simulation in Action" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+                  <img src="/assets/img/dltrain.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Simulation training" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
               </picture>
           </figure>
+          <figure>
+            <picture>
+                <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+                <img src="/assets/img/dl.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Simulation in Action" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+            </picture>
+        </figure>
 
       </article>
         <p>Every project has a beautiful feature showcase page. It’s easy to include images in a flexible 3-column grid
