@@ -77,9 +77,54 @@
         <p class="post-description">RRT, AMCL, Dead Reackoning and PID Controller on a 1D lidar enabled F<sub>1/10th</sub> car to win first place in an autonomous car race.</p>
       </header>
       <article>
-        <p>In this project we go step by step into developing an autonomous F1/10th car</p>
-        <p>For this project we used the F1/10th simulator built on Unity by University at Buffalo Distributed Robotics and Networked Embedded Systems Lab. One can also use simulators like Isaac Sim and Gazeebo instead.</p>
-        <p>This Project was part of the CSE568 Robotics Algorithms Course at University at Buffalo. Due to this, the code is unavailable due to Academic integrity policies.</p>
+        <p>This project walks through the development of an autonomous F1/10th car step by step.</p>
+        <p>We utilized the F1/10th simulator built in Unity by the University at Buffalo Distributed Robotics and Networked Embedded Systems Lab. Alternative simulators such as Isaac Sim and Gazebo can also be used.</p>
+        <p>This project was part of the CSE568 Robotics Algorithms course at the University at Buffalo. Due to academic integrity policies, the code cannot be shared.</p>
+
+        <h3>Prerequisites</h3>
+        <p>Ensure you have the following dependencies installed before running this project:</p>
+        <ul>
+            <li>ROS Noetic</li>
+            <li>Gazebo/Unity</li>
+            <li>Python 3.8+</li>
+            <li>Ubuntu 20.04</li>
+        </ul>
+        <p>Installation guides:</p>
+        <ul>
+            <li><a href="http://wiki.ros.org/noetic/Installation/Ubuntu" target="_blank">ROS Noetic Installation Guide</a></li>
+            <li><a href="http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install" target="_blank">Gazebo Installation Guide</a></li>
+        </ul>
+        <p>The simulator includes built-in sensors for LiDAR, IMU, and odometry.</p>
+        <p>ROS provides a powerful visualization tool called Rviz, which allows real-time visualization and interaction with standard ROS data types, such as point clouds and markers.</p>
+        <p>Understanding transformations is crucial in robotics and essential for mastering ROS.</p>
+
+        <h3>Go-To-Goal Navigation</h3>
+        <p>The first step in designing an autonomous vehicle is implementing a go-to-goal algorithm. This algorithm takes the vehicle’s goal position as input and computes a path to it.</p>
+        <p>Initially, we use exact odometry data from the simulator to simplify path planning. A PID controller is employed for path tracking.</p>
+
+        <h4>PID Controller</h4>
+        <p>A Proportional-Integral-Derivative (PID) controller is used to control the vehicle's movement. It consists of:</p>
+        <ul>
+            <li><strong>Proportional (P):</strong> Corrects errors based on current deviation.</li>
+            <li><strong>Integral (I):</strong> Addresses accumulated past errors.</li>
+            <li><strong>Derivative (D):</strong> Predicts future errors based on rate of change.</li>
+        </ul>
+
+        <h3>Gap Follow</h3>
+        <p>In this stage, the vehicle races on a circuit with randomly placed obstacles. A 1D LiDAR sensor detects obstacles, and a combination of PID control and bicycle kinematics is used to navigate the track effectively.</p>
+
+        <h3>Fully Autonomous F1/10th Car</h3>
+        <p>In real-world scenarios, exact odometry data is unavailable. Instead, we estimate odometry and correct it when significant drift occurs.</p>
+        <p>To achieve real-world autonomy, we integrate the following algorithms:</p>
+        
+        <h4>RRT - Rapidly-exploring Random Tree</h4>
+        <p>RRT is a motion planning algorithm that explores the environment to generate feasible paths from the vehicle’s current position to the goal.</p>
+
+        <h4>AMCL - Adaptive Monte Carlo Localization</h4>
+        <p>AMCL is a probabilistic localization approach that uses a particle filter to estimate the vehicle's position based on sensor data.</p>
+
+        <h4>Dead Reckoning</h4>
+        <p>Dead reckoning estimates the vehicle's position by integrating motion sensor data over time. It is prone to accumulating errors, necessitating periodic corrections.</p>
 
         <div class="language-plaintext highlighter-rouge">
           <div class="highlight">
