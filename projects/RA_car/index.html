@@ -99,7 +99,7 @@
         <p>Understanding transformations is crucial in robotics and essential for mastering ROS.</p>
 
         <h3>Go-To-Goal Navigation</h3>
-        <p>The first step in designing an autonomous vehicle is implementing a go-to-goal algorithm. This algorithm takes the vehicle’s goal position as input and computes a path to it.</p>
+        <p>The first step in designing an autonomous vehicle is implementing a go-to-goal algorithm. This algorithm takes the vehicle's goal position as input and computes a path to it.</p>
         <p>Initially, we use exact odometry data from the simulator to simplify path planning. A PID controller is employed for path tracking.</p>
 
         <h4>PID Controller</h4>
@@ -118,13 +118,32 @@
         <p>To achieve real-world autonomy, we integrate the following algorithms:</p>
         
         <h4>RRT - Rapidly-exploring Random Tree</h4>
-        <p>RRT is a motion planning algorithm that explores the environment to generate feasible paths from the vehicle’s current position to the goal.</p>
+        <p>RRT is a motion planning algorithm that explores the environment to generate feasible paths from the vehicle's current position to the goal.</p>
+        <figure>
+          <picture>
+            <source class="responsive-img-srcset"
+              type="image/webp" sizes="95vw">
+            </source> <img src="/assets/img/RRT2d.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto"
+              title="RRT" loading="eager"
+              onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+          </picture>
+        </figure>
 
         <h4>AMCL - Adaptive Monte Carlo Localization</h4>
         <p>AMCL is a probabilistic localization approach that uses a particle filter to estimate the vehicle's position based on sensor data.</p>
 
         <h4>Dead Reckoning</h4>
         <p>Dead reckoning estimates the vehicle's position by integrating motion sensor data over time. It is prone to accumulating errors, necessitating periodic corrections.</p>
+        <figure>
+          <picture>
+            <source class="responsive-img-srcset"
+              type="image/webp" sizes="95vw">
+            </source> <img src="/assets/img/RRT.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto"
+              title="Screenshot of F1/10th car in action" loading="eager"
+              onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+          </picture>
+        </figure>
+        
 
         <div class="language-plaintext highlighter-rouge">
           <div class="highlight">
