@@ -43,21 +43,21 @@
         <div class="collapse navbar-collapse text-right" id="navbarNav">
           <ul class="navbar-nav ml-auto flex-nowrap">
             <li class="nav-item "> <a class="nav-link" href="/">about </a> </li>
-            <li class="nav-item "> <a class="nav-link" href="/blog/">blog </a> </li>
+            <!-- <li class="nav-item "> <a class="nav-link" href="/blog/">blog </a> </li> -->
             <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li>
             <li class="nav-item active"> <a class="nav-link" href="/projects/">projects <span
                   class="sr-only">(current)</span> </a> </li>
             <li class="nav-item "> <a class="nav-link" href="/repositories/">repositories </a> </li>
             <li class="nav-item "> <a class="nav-link" href="/cv/">cv </a> </li>
-            <li class="nav-item "> <a class="nav-link" href="/teaching/">teaching </a> </li>
-            <li class="nav-item "> <a class="nav-link" href="/people/">people </a> </li>
-            <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+            <!-- <li class="nav-item "> <a class="nav-link" href="/teaching/">teaching </a> </li>
+            <li class="nav-item "> <a class="nav-link" href="/people/">people </a> </li> -->
+            <!-- <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">submenus </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item "
                   href="/books/">bookshelf</a>
                 <div class="dropdown-divider"></div> <a class="dropdown-item " href="/blog/">blog</a>
               </div>
-            </li>
+            </li> -->
             <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span
                   class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li>
             <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon"
@@ -77,60 +77,100 @@
         <p class="post-description">with background image</p>
       </header>
       <div class="container mt-5" role="main">
-        <div class="post">
-            <header class="post-header text-center">
-                <h1 class="post-title">Autonomous F1/10th Car</h1>
-                <p class="post-description">Reinforcement Learning for Autonomous Vehicle Speed Optimization using ROS and F1/10th Simulator.</p>
-            </header>
-            <article>
-                <h2>Project Overview</h2>
-                <p>This project involves setting up VMware, installing ROS, creating a catkin workspace, and configuring the F1/10th autonomous vehicle simulator. Our goal is to implement reinforcement learning (RL) to optimize autonomous vehicle speed.</p>
-                
-                <h3>Prerequisites</h3>
-                <p>Ensure you have the following dependencies installed:</p>
-                <ul>
-                    <li>VMware</li>
-                    <li>ROS Noetic</li>
-                    <li>Ubuntu 20.04</li>
-                    <li>Python 3.8+</li>
-                </ul>
-                
-                <h3>Setup Instructions</h3>
-                <h4>Step 1: VMware and ROS Setup</h4>
-                <p>Follow the detailed instructions below to install VMware and ROS:</p>
-                <ul>
-                    <li><a href="#" target="_blank">VMware Setup Instructions</a></li>
-                    <li><a href="#" target="_blank">ROS Setup Instructions</a></li>
-                </ul>
-                
-                <h4>Step 2: Create a Catkin Workspace</h4>
-                <p>Follow the <a href="http://wiki.ros.org/catkin/Tutorials/create_a_workspace" target="_blank">ROS tutorial</a> to create a new catkin workspace. Then, copy our provided code into the <code>src</code> folder and build the workspace:</p>
-                <pre><code>cd ~/catkin_ws
-catkin_make</code></pre>
-                
-                <h4>Step 3: Run the Code</h4>
-                <p>Source the setup file before running the ROS nodes:</p>
-                <pre><code>source devel/setup.bash</code></pre>
-                <p>Run the ROS node:</p>
-                <pre><code>rosrun DL_Project run.py</code></pre>
-                
-                <h4>Step 4: Setup the F1-10th Autonomous Vehicle Simulator</h4>
-                <p>Follow the <a href="#" target="_blank">F1-10th Simulator Setup Instructions</a> to set up and run the simulator.</p>
-                
-                <h3>Reinforcement Learning Implementation</h3>
-                <p>The RL model optimizes speed by learning from sensor feedback and previous driving performance. The training process includes:</p>
-                <ul>
-                    <li>State representation with LiDAR and IMU data</li>
-                    <li>Action space defining acceleration and steering</li>
-                    <li>Reward function optimizing speed and collision avoidance</li>
-                </ul>
-                
-                <h3>Conclusion</h3>
-                <p>By following these steps, you will set up an environment for running our RL model on the F1/10th simulator. For additional details, visit the <a href="#">GitHub Repository</a>.</p>
-            </article>
-        </div>
-    </div>
-      <article>
+        <article>
+          <p>This project explores the application of reinforcement learning (RL) for optimizing vehicle speed in autonomous navigation. Using a Unity-based simulator integrated with ROS, we developed a system that balances speed and safety while improving lap times.</p>
+          
+          <p>The research focuses on integrating Deep Q-Network (DQN) and CNN-based neural networks to dynamically optimize speed in real-time, enabling more efficient and adaptable autonomous navigation.</p>
+
+          <h3>Prerequisites</h3>
+          <p>Ensure you have the following dependencies installed before running this project:</p>
+          <ul>
+              <li>ROS Noetic</li>
+              <li>Unity-based F1/10th Simulator</li>
+              <li>Python 3.8+</li>
+              <li>Ubuntu 20.04</li>
+          </ul>
+          <p>Installation guides:</p>
+          <ul>
+              <li><a href="http://wiki.ros.org/noetic/Installation/Ubuntu" target="_blank">ROS Noetic Installation Guide</a></li>
+              <li><a href="https://unity.com/download" target="_blank">Unity Installation Guide</a></li>
+          </ul>
+          <p>The simulator includes built-in sensors for LiDAR, IMU, and odometry.</p>
+          <p>ROS provides a powerful visualization tool called Rviz, which allows real-time visualization and interaction with standard ROS data types, such as point clouds and markers.</p>
+
+          <h3>Autonomous Vehicle Simulation</h3>
+          <p>The simulator provides a realistic testing environment with dynamic lighting, race tracks, and real-time sensor data.</p>
+
+          <h4>Technology Stack</h4>
+          <ul>
+              <li><strong>Simulation:</strong> Unity-based Audubon-Unity Simulator</li>
+              <li><strong>Framework:</strong> ROS (Robot Operating System)</li>
+              <li><strong>Deep Learning:</strong> Deep Q-Network (DQN), CNNs</li>
+              <li><strong>Sensors:</strong> LiDAR, Odometry</li>
+              <li><strong>Control:</strong> PID Controller</li>
+          </ul>
+
+          <h3>Reinforcement Learning Model</h3>
+          <p>We employed a Deep Q-Network (DQN) to train the vehicle to adjust its speed dynamically based on sensor input.</p>
+          <ul>
+              <li><strong>Observation Space:</strong> LiDAR scan data (1080 points) and previous actions.</li>
+              <li><strong>Action Space:</strong> Discretized speed control (35 actions).</li>
+              <li><strong>Reward System:</strong> Balanced incentives for speed efficiency and crash avoidance.</li>
+          </ul>
+
+          <h3>Neural Network Architecture</h3>
+          <p>To process sensor inputs effectively, we used a combination of fully connected layers and CNN-based architectures for improved feature extraction.</p>
+
+          <h3>Training Process</h3>
+          <p>The training process involved curriculum learning:</p>
+          <ul>
+              <li><strong>Phase 1:</strong> Maximizing speed and optimizing lap times.</li>
+              <li><strong>Phase 2:</strong> Introducing safety measures and collision avoidance.</li>
+              <li><strong>Early Stopping:</strong> Prevented overfitting while balancing speed vs. safety.</li>
+          </ul>
+
+          <h3>Results and Evaluation</h3>
+          <p>Our RL model achieved nearly competitive lap times compared to a manually optimized PID controller.</p>
+          <ul>
+              <li><strong>Lap Completion Time:</strong> RL model - 36 mins vs. PID control - 32 mins.</li>
+              <li><strong>Performance:</strong> Adaptive braking and turn anticipation improved driving efficiency.</li>
+          </ul>
+
+          <h3>Challenges and Solutions</h3>
+          <ul>
+              <li>Implemented **CNNs** for better feature extraction.</li>
+              <li>Introduced **reward shaping** to prevent reckless speed prioritization.</li>
+              <li>Trained the RL model with **real-time simulation updates** for improved decision-making.</li>
+          </ul>
+
+          <h3>Limitations and Future Work</h3>
+          <p>The current model requires significant training time (~23 hours). Future work will focus on:</p>
+          <ul>
+              <li>Exploring advanced RL techniques such as Actor-Critic (A2C) and DDPG.</li>
+              <li>Enhancing reward mechanisms for better speed-safety trade-offs.</li>
+              <li>Expanding the dataset with more diverse training environments.</li>
+          </ul>
+
+          <h3>Conclusion</h3>
+          <p>This project demonstrated the feasibility of using **Deep Q-Networks for speed optimization** in autonomous vehicles. The results highlight the potential of RL in improving navigation efficiency, making it a promising approach for real-world deployment in self-driving applications.</p>
+
+          <h3>Project Architecture</h3>
+          <figure>
+              <picture>
+                  <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+                  <img src="/assets/img/architecture_diagram.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Project Architecture" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+              </picture>
+          </figure>
+
+          <h3>RL-based Speed Optimization in Action</h3>
+          <figure>
+              <picture>
+                  <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+                  <img src="/assets/img/simulator_run.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="Simulation in Action" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+              </picture>
+          </figure>
+
+      </article>
         <p>Every project has a beautiful feature showcase page. It’s easy to include images in a flexible 3-column grid
           format. Make your photos 1/3, 2/3, or full width.</p>
         <p>To give your project a background in the portfolio page, just add the img tag to the front matter like so:
