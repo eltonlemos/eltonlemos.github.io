@@ -157,20 +157,25 @@
         </ul>
 
         <h3>Demo Videos</h3>
-        <p>Watch the AI Pet Robot in action:</p>
-        <ul>
-            <li><a href="https://www.youtube.com/watch?v=lxDzJWlctn4" target="_blank">Full Demo & Explanation</a></li>
-        </ul>
-        <figure>
-          <picture>
-            <source class="responsive-img-srcset"
-              
-              type="image/webp" sizes="95vw">
-            </source> <img src="/assets/img/robot.png" class="img-fluid rounded z-depth-1" width="100%" height="auto"
-              title="Ai Pet Robot" loading="eager"
-              onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
-          </picture>
-        </figure>
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="flex: 1;">
+              <p>Watch the AI Pet Robot in action:</p>
+              <ul>
+                  <li><a href="https://www.youtube.com/watch?v=lxDzJWlctn4" target="_blank">Full Demo & Explanation</a></li>
+              </ul>
+          </div>
+          <div style="flex: 0.5;">
+              <figure>
+                  <picture>
+                      <source class="responsive-img-srcset" type="image/webp" sizes="50vw">
+                      <img src="/assets/img/robot.png" class="img-fluid rounded z-depth-1" 
+                           width="300px" height="auto"
+                           title="AI Pet Robot" loading="eager"
+                           onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+                  </picture>
+              </figure>
+          </div>
+      </div>
         <h3>Technical Implementation</h3>
         <p>Key technologies used in the AI Pet Robot:</p>
         <ul>
