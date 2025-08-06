@@ -103,7 +103,14 @@
 
   <h4>Cylinder3D</h4>
   <p>Using MMDetection3D, I customized the <code>config.py</code> to define a light-weight Cylinder3D model and manually integrated the transformer-based attention mechanism from Group-Free 3D. I tested two approaches: using MMDetection3D’s native Group-Free class (unsuccessful) and directly modifying the sparse convolution blocks (successful).</p>
-
+        <figure>
+          <picture>
+              <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+              <img src="/assets/img/Lidar_seg.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" 
+                   title="Cylinder 3D Model working visualization" loading="eager" 
+                   onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+          </picture>
+      </figure>
   <h4>PointNet</h4>
   <p>I fully implemented PointNet in PyTorch with modular TNet and self-attention layers. The architecture supports toggling attention on/off and uses a dynamic configuration for custom loss functions.</p>
 
@@ -130,12 +137,66 @@
     <li>Baseline: 91.10% Accuracy, mIoU: 0.5203</li>
     <li>With Attention: 80.16% Accuracy, mIoU: 0.3472 (slower and worse performance)</li>
   </ul>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+  
+  <figure style="flex: 1; min-width: 300px; max-width: 48%;">
+    <picture>
+      <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+      <img src="/assets/img/4 epoch attention.png" class="img-fluid rounded z-depth-1"
+           width="100%" height="auto"
+           title="With Attention" loading="eager"
+           onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    </picture>
+    <figcaption style="text-align: center; margin-top: 8px;">With Attention</figcaption>
+  </figure>
 
+  <figure style="flex: 1; min-width: 300px; max-width: 48%;">
+    <picture>
+      <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+      <img src="/assets/img/4 epoch no attention.png" class="img-fluid rounded z-depth-1"
+           width="100%" height="auto"
+           title="Without Attention" loading="eager"
+           onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    </picture>
+    <figcaption style="text-align: center; margin-top: 8px;">Without Attention</figcaption>
+  </figure>
+
+</div>
   <h4>PointNet</h4>
   <ol>
     <li>Focal + Dice Loss – good baseline performance</li>
+      <figure style="flex: 1; min-width: 300px; max-width: 48%;">
+    <picture>
+      <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+      <img src="/assets/img/Accuracy_Only_Dice.png" class="img-fluid rounded z-depth-1"
+           width="100%" height="auto"
+           title="Focal + Dice Loss" loading="eager"
+           onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    </picture>
+    <figcaption style="text-align: center; margin-top: 8px;">Without Attention</figcaption>
+  </figure>
     <li>Focal + Dice + Jaccard Loss – faster convergence, smoother training</li>
+          <figure style="flex: 1; min-width: 300px; max-width: 48%;">
+    <picture>
+      <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+      <img src="/assets/img/Accuracy_All_Losses.png" class="img-fluid rounded z-depth-1"
+           width="100%" height="auto"
+           title="Focal + Dice + Jaccard Loss" loading="eager"
+           onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    </picture>
+    <figcaption style="text-align: center; margin-top: 8px;">Without Attention</figcaption>
+  </figure>
     <li>Above + Self-Attention – increased training time, no consistent visual improvement</li>
+    <figure style="flex: 1; min-width: 300px; max-width: 48%;">
+    <picture>
+      <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+      <img src="/assets/img/Accuracy_Attention.png" class="img-fluid rounded z-depth-1"
+           width="100%" height="auto"
+           title="Above + Self-Attention" loading="eager"
+           onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+    </picture>
+    <figcaption style="text-align: center; margin-top: 8px;">Without Attention</figcaption>
+  </figure>
   </ol>
 
   <h3>Analysis</h3>
