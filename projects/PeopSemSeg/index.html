@@ -74,63 +74,58 @@
     <div class="post">
       <header class="post-header">
 <header>
-  <h1 class="post-title">Human Segmentation Simulation on NVIDIA Isaac Sim</h1>
+  <h1 class="post-title">Human Segmentation Simulation on Isaac Sim</h1>
   <p class="post-description">
-    A full Software-in-the-Loop (SIL) simulation using Isaac Sim and ROS2, where a Nova Carter robot equipped with a camera detects humans in real-time using a U-Net-based segmentation model.
+    A simulation in NVIDIA Isaac Sim where a wheeled robot equipped with a camera detects humans in real time using semantic segmentation.
   </p>
 </header>
 
 <article>
 
-  <h3>Overview</h3>
-  <p>This project demonstrates an end-to-end simulation in <strong>NVIDIA Isaac Sim</strong> using a <strong>ROS2-integrated Nova Carter robot</strong> equipped with a camera to perform real-time <strong>human segmentation</strong>. The environment, robot, sensors, and deep learning model are fully integrated to test perception in a realistic warehouse setup.</p>
+  <p>In this project, I developed a Software-in-the-Loop (SIL) testing simulation using NVIDIA Isaac Sim.</p>
+  <p>I used an NVIDIA Nova Carter robot as the base platform and mounted a camera sensor on it. The robot’s sensors and motors are fully interfaced with ROS2 using rosbridge.</p>
+  <p>For the segmentation model, I trained a PeopleSemSegNet model using NVIDIA U-Net.</p>
 
-  <h3>Simulation Environment</h3>
-  <p>I used the <code>warehouse.usd</code> file from Isaac Sim as the base environment and added assets like people, forklifts, and obstacles via the Isaac Assets tab.</p>
+  <h3>Building Environment</h3>
+  <p>For the environment, I used <code>warehouse.usd</code>. I added assets like forklifts, people, and other obstacles using the Isaac Assets tab.</p>
 
-  <h3>Robot Setup</h3>
-  <p>While Isaac Sim provides a ready-to-use ROS2 version of Nova Carter, I chose to start from the base robot USD. I created a custom action graph, configured the <strong>rosbridge</strong>, and wired the sensors manually to better understand the simulation stack. I also added a camera sensor for vision tasks and configured <strong>teleoperation via ROS2</strong> using a differential drive controller.</p>
+  <h3>Setting up Robot</h3>
+  <p>You can directly import the Nova Carter ROS-equipped robot USD for this project. However, I used the base Nova Carter USD and designed my own action graph, rosbridge, and sensor connections to better understand how robot models function in Isaac Sim.</p>
+  <p>I used a differential controller action graph to implement control logic for the Nova Carter, which can also be controlled via teleop in ROS2.</p>
 
-  <h3>Differential Drive Action Graph</h3>
-  <p>The following nodes were used to build the differential drive logic:</p>
+  <h3>Differential Drive Graph</h3>
+  <p>For the differential drive, I used the following nodes:</p>
   <ul>
-    <li><strong>ROS2 Context</strong>: Initializes ROS2 integration in the simulation.</li>
-    <li><strong>On Playback Tick</strong>: Triggers graph updates on every simulation step.</li>
-    <li><strong>ROS2 Subscribe Twist</strong>: Subscribes to velocity commands from ROS2 topic <code>/cmd_vel</code>.</li>
-    <li><strong>Scale To/From Stage Units</strong>: Converts values between ROS units and simulation units.</li>
-    <li><strong>Break 3-Vector (x2)</strong>: Splits linear and angular velocities.</li>
-    <li><strong>Make Array</strong>: Prepares command array for the controller.</li>
-    <li><strong>Differential Controller</strong>: Calculates wheel speeds based on input velocities.</li>
-    <li><strong>Articulation Controller</strong>: Sends the joint commands to the robot wheels.</li>
-    <li><strong>Constant Token (x2)</strong>: Specifies wheel joint paths.</li>
+    <li><strong>ROS2 Context</strong>: Initializes the ROS2 environment within Isaac Sim.</li>
+    <li><strong>On Playback Tick</strong>: Triggers execution on each simulation step.</li>
+    <li><strong>ROS2 Subscribe Twist</strong>: Subscribes to <code>/cmd_vel</code> for velocity commands.</li>
+    <li><strong>Scale To/From Stage Units</strong>: Converts velocity units between ROS and USD stage.</li>
+    <li><strong>Two Break 3-Vector nodes</strong>: Breaks the Twist message into individual vector components.</li>
+    <li><strong>Make Array</strong>: Combines vector components into an array for control logic.</li>
+    <li><strong>Differential Controller</strong>: Converts linear/angular velocity into wheel speeds.</li>
+    <li><strong>Articulation Controller</strong>: Applies control values to wheel joints.</li>
+    <li><strong>Two Constant Token nodes</strong>: Specifies wheel joint paths for left and right wheels.</li>
   </ul>
-  <p><em>(A visual diagram of this flow can enhance understanding here.)</em></p>
-
+  <p>Below is a diagram of how these nodes are connected.</p>
+        <figure>
+          <picture>
+              <source class="responsive-img-srcset" type="image/webp" sizes="95vw">
+              <img src="/assets/img/pssss.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" 
+                   title="Simulator in Action" loading="eager" 
+                   onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+          </picture>
+      </figure>
   <h3>People Segmentation Model</h3>
-  <p>I trained a semantic segmentation model using NVIDIA's <strong>PeopleSemSegNet</strong>, based on the U-Net architecture.</p>
-  <p>For data, I used Isaac Sim's <strong>Synthetic Data Generation Tool</strong> to create 4,000 randomized warehouse environments with human placements and obstacle variations. The tool generated segmentation masks and bounding boxes automatically.</p>
-  <p>Training was done over 200 epochs with a batch size of 16 on my NVIDIA RTX 3080 (8GB VRAM), taking approximately 5 hours.</p>
-  <p>The model's performance showed only a small deviation in mIoU compared to NVIDIA's base model, confirming the quality of the synthetic dataset.</p>
+  <p>For semantic segmentation, I used Isaac Sim's Synthetic Data Generation tool to create random environments with varied human positions and obstacles. This tool also captures pixel-wise annotations and bounding boxes which are essential for training segmentation models.</p>
+  <p>I used NVIDIA's PeopleSemSegNet model as a base. After deploying it on the robot, I trained it further using 4,000 synthetically generated environments. This experiment was meant to experiment with training model with the help of Isaac Sim.</p>
+  <p>You can skip the training step and directly use the pretrained PeopleSemSegNet model.</p>
+  <p>The model was trained over 200 epochs with a batch size of 16, taking approximately 5 hours on an RTX 3080 GPU (8GB VRAM).</p>
+  <p>As expected, there was only a small deviation in mIoU between my trained model and the pretrained base model.</p>
 
-  <h3>Software-in-the-Loop Pipeline</h3>
-  <ol>
-    <li>Generate synthetic environments with human/object assets.</li>
-    <li>Use Isaac Sim to export annotated images (segmentation masks + bounding boxes).</li>
-    <li>Train U-Net segmentation model on synthetic data.</li>
-    <li>Deploy trained model back onto the simulated robot.</li>
-    <li>Use ROS2 to process camera feed and run segmentation in real time.</li>
-  </ol>
-
-  <h3>Conclusion</h3>
-  <p>I successfully built an SIL simulation pipeline integrating ROS2, Isaac Sim, synthetic data generation, and semantic segmentation for real-time perception tasks.</p>
-  <p>Through this project, I gained deep insight into robot modeling, ROS2 integration, synthetic dataset generation, action graph design, and training segmentation models using synthetic data.</p>
-
-  <h3>Future Work</h3>
-  <ul>
-    <li>Integrate obstacle avoidance using segmentation output.</li>
-    <li>Deploy the trained model to a physical robot for real-world validation.</li>
-    <li>Improve synthetic domain-to-reality transfer accuracy through fine-tuning.</li>
-  </ul>
+  <h3>Conclusion nad Closing notes</h3>
+  <p>I was able to deploy an end-to-end environment for Software-in-the-Loop (SIL) testing in Isaac Sim.</p>
+  <p>I learned how to deploy a ROS2-equipped robot in Isaac Sim and control it via teleop and differential control.</p>
+  <p>I also learned to read sensor data and generate synthetic datasets for training deep learning models.</p>
 
 </article>
     </article>
