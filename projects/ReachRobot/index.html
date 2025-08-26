@@ -87,10 +87,9 @@
         <figure>
             <picture>
                 <source class="responsive-img-srcset" type="image/webp" sizes="50vw">
-                <img src="/assets/reach.gif" class="img-fluid rounded z-depth-1" 
-                      width="300px" height="auto"
-                      title="Robot reaching a position" loading="eager"
-                      onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+                <img src="/assets/reach.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto"
+              title="RRT" loading="eager"
+              onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
             </picture>
         </figure>
         <h3>Robot Articulation</h3>
@@ -156,10 +155,34 @@
             <li><b>position_command_error:</b> This reward function calculates the distance of the end effector from the commanded position and uses that as the negative reward. </li>
             <li><b>orientation_error:</b> This reward function calculates the magnitude of the quaternion distance between the end effectors orientation and the commanded orientation and uses that as the negative reward.</li>
           </ol>
+          <figure>
+            <picture>
+                <source class="responsive-img-srcset" type="image/webp" sizes="50vw">
+                <img src="/assets/training.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto"
+              title="RRT" loading="eager"
+              onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+            </picture>
+        </figure>
+        <figure>
+            <picture>
+                <source class="responsive-img-srcset" type="image/webp" sizes="50vw">
+                <img src="/assets/reach2.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto"
+              title="RRT" loading="eager"
+              onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+            </picture>
+        </figure>
           As you must have noticed, I ran first only negative rewards. I noticed that the model was taking too long to converge. Additionally, the trained model was a bit off from the goal.
           I realized that this was because there is no benifit to the model to <b>Reach the exact goal</b> so it would be content by just reaching near it.
           so I changed the reward functions to give a positive reward as it got closer to the goal!
         </p>
+        <figure>
+            <picture>
+                <source class="responsive-img-srcset" type="image/webp" sizes="50vw">
+                <img src="/assets/reach.gif" class="img-fluid rounded z-depth-1" width="100%" height="auto"
+              title="RRT" loading="eager"
+              onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+            </picture>
+        </figure>
         <h3>skrl_ppo Config</h3>
         <p>For this project I used Skrl PPO backbone that is supported by IsaacLab. You can find my working config for this at <a href="https://github.com/eltonlemos/ReachRobot/blob/main/agents/skrl_ppo_cfg.yaml" target="_blank" rel="noopener">https://github.com/eltonlemos/ReachRobot/blob/main/agents/skrl_ppo_cfg.yaml </a></p>
         
